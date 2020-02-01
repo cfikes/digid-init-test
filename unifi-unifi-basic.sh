@@ -66,5 +66,5 @@ CompleteSetup() {
 	
 }
 
-InstallPre()
-InstallUnifi()
+InstallPre
+InstallUnifi
