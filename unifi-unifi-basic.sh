@@ -23,7 +23,7 @@ InstallPre() {
 }
 
 InstallUnifi() {
-	apt-get install unifi
+	apt-get install unifi -Y
 }
 
 InstallPre
