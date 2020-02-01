@@ -26,45 +26,5 @@ InstallUnifi() {
 	apt-get install unifi
 }
 
-BasicSetup () {
-	# Generate Hostname
-	
-}
-
-GenerateCertificates() {
-	# FM HE Scripts
-	
-	# CRON Installation
-	
-}
-
-ConfigureReverseProxy() {
-	# Download Template
-	
-	# Change Hostname and Certificate Names
-	
-}
-
-SetupFirewall() {
-	# Allow UniFi Ports https and ICMP
-}
-
-SSHKeyAccess() {
-	# Setup SSH Key Authentication
-	
-}
-
-InstallMonitoring() {
-	# Download Customer Information
-	
-	# CURL Dashboard Installation
-
-}
-
-CompleteSetup() {
-	# Generate Completion and Customer Notices
-	
-}
-
 InstallPre
 InstallUnifi
