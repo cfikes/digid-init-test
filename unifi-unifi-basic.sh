@@ -25,7 +25,7 @@ InstallUnifi() {
 
 GenerateSSL() {
 	apt-get install openssl -y
-	openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/DigiD.key -out /etc/ssl/certs/DigiD.crt -subj "/C=US/ST=Texas/L=Silsbee/O=FikesMedia/CN=$(hostname)"}
+	openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/DigiD.key -out /etc/ssl/certs/DigiD.crt -subj "/C=US/ST=Texas/L=Silsbee/O=FikesMedia/CN=$(hostname)"
 }
 
 InstallNginx(){
@@ -35,7 +35,7 @@ InstallNginx(){
 	#export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
 
 	echo "server {" > /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "listen 8888 ssl;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "listen 443 ssl;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "server_name" $(hostname) ";"	>> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "location /wss/ {" >> /etc/nginx/sites-enabled/DigiD-UniFi
