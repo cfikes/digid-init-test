@@ -23,6 +23,11 @@ InstallUnifi() {
 	apt-get install unifi -y
 }
 
+GenerateSSL() {
+	apt-get install openssl -y
+	openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/DigiD.key -out /etc/ssl/certs/DigiD.crt -subj "/C=US/ST=Texas/L=Silsbee/O=FikesMedia/CN=$(hostname)"}
+}
+
 InstallNginx(){
 	apt-get install nginx -y
 	systemctl stop nginx
@@ -30,8 +35,8 @@ InstallNginx(){
 	#export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
 
 	echo "server {" > /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "listen 88;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "server_name" $(hostname) ";" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "listen 8888 ssl;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "server_name" $(hostname) ";"	>> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "location /wss/ {" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_pass https://localhost:8443;" >> /etc/nginx/sites-enabled/DigiD-UniFi
@@ -48,8 +53,8 @@ InstallNginx(){
 	echo "proxy_set_header X-Real-IP \$remote_addr;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_set_header X-Forward-For \$proxy_add_x_forwarded_for;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "}" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "#ssl_certificate /etc/ssl/certs/selfsigned.crt;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "#ssl_certificate_key /etc/ssl/private/selfsigned.key;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "ssl_certificate /etc/ssl/certs/DigiD.crt;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "ssl_certificate_key /etc/ssl/private/DigiD.key;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "}" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	
@@ -61,4 +66,5 @@ InstallNginx(){
 
 InstallPre
 InstallUnifi
+GenerateSSL
 InstallNginx
