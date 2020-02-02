@@ -31,7 +31,7 @@ InstallNginx(){
 
 	echo "server {" > /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "listen 88;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "server_name" $(hostname) >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "server_name" $(hostname) ";">> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "location /wss/ {" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_pass https://localhost:8443" >> /etc/nginx/sites-enabled/DigiD-UniFi
