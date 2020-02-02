@@ -34,19 +34,19 @@ InstallNginx(){
 	echo "server_name" $(hostname) ";" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "location /wss/ {" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "proxy_pass https://localhost:8443" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "proxy_pass https://localhost:8443;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_http_version 1.1;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_buffering off;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "proxy_set_header Upgrade $http_upgrade;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "proxy_set_header Connection "Upgrade";" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "proxy_set_header Upgrade \$http_upgrade;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "proxy_set_header Connection \"Upgrade\";" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_read_timeout 86400;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "}" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "location / {" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "proxy_pass https://localhost:8443/;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "proxy_set_header Host $host;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "proxy_set_header X-Real-IP $remote_addr;" >> /etc/nginx/sites-enabled/DigiD-UniFi
-	echo "proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "proxy_set_header Host \$host;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "proxy_set_header X-Real-IP \$remote_addr;" >> /etc/nginx/sites-enabled/DigiD-UniFi
+	echo "proxy_set_header X-Forward-For \$proxy_add_x_forwarded_for;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "}" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#ssl_certificate /etc/ssl/certs/selfsigned.crt;" >> /etc/nginx/sites-enabled/DigiD-UniFi
 	echo "#ssl_certificate_key /etc/ssl/private/selfsigned.key;" >> /etc/nginx/sites-enabled/DigiD-UniFi
