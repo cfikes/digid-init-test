@@ -25,7 +25,7 @@ InstallUnifi() {
 
 GenerateSSL() {
 	apt-get install openssl -y
-	openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/DigiD.key -out /etc/ssl/certs/DigiD.crt -subj "/C=US/ST=Texas/L=Silsbee/O=FikesMedia/CN=$(hostname)"
+	openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/DigiD.key -out /etc/ssl/certs/DigiD.crt -subj "/C=US/ST=Texas/L=Silsbee/O=FikesMedia/CN=$(hostname).digid.cloud"
 }
 
 InstallNginx(){
